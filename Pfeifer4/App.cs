@@ -1,3 +1,13 @@
+/********************************************************************
+*** NAME        : Johnny Pfeifer                                  ***
+*** CLASS       : CSc 346                                         ***
+*** ASSIGNMENT  : 4                                               ***
+*** DUE DATE    : 4/3                                             ***
+*** INSTRUCTOR  : GAMRADT                                         ***
+*********************************************************************
+*** DESCRIPTION : This program simulates running an app store.    ***
+    You can select an app store, Google or Apple, and purchase apps.*
+********************************************************************/
 using System;
 namespace AppStoreNS;
 
@@ -20,5 +30,4 @@ public class App
         Price = other.Price;
         Available = other.Available;
     }
-
 }
