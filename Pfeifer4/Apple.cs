@@ -70,30 +70,4 @@ public class Apple : AppStore
         Paid += Convert.ToInt32(Console.ReadLine());
         Console.WriteLine();
     }
-    /********************************************************************
-    *** METHOD      : DownloadApp                                     ***
-    *********************************************************************
-    *** DESCRIPTION : Tells a customer if their app is being downloaded**
-    ***                 Thanks customer for using the appstore        ***
-    *** INPUT ARGS  :                                                 ***
-    *** OUTPUT ARGS :                                                 ***
-    *** IN/OUT ARGS :                                                 ***
-    *** RETURN      : void                                            ***
-    ********************************************************************/
-    protected override void DownloadApp()
-    {
-        if(Paid == 1)
-        {
-            Console.WriteLine("App purchased successfully. Downloading. . . ");
-            Apps[Selected].Available--;
-            Console.WriteLine("Thank you for purchasing " + Apps[Selected].Name + " from the Apple App Store!");
-        }
-        else
-        {
-            Console.WriteLine("Payment declined: insufficient funds");
-        }
-        Console.Write("Press enter to continue. . . ");
-        Console.ReadLine();
-        Console.Clear();
-    }
 }

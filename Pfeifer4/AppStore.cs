@@ -163,11 +163,11 @@ public abstract class AppStore
     *** IN/OUT ARGS :                                                 ***
     *** RETURN      : void                                            ***
     ********************************************************************/
-    protected virtual void DownloadApp()        //default method - override for each appstore
+    protected void DownloadApp()        //default method - override for each appstore
     {
         if(Paid == 1)
         {
-            Console.WriteLine("App purchased successfully. Downloading");
+            Console.WriteLine("App purchased successfully! Downloading " + Apps[Selected].Name + ". . .");
             Apps[Selected].Available--;
         }
         else
