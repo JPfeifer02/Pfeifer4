@@ -1,3 +1,13 @@
+/********************************************************************
+*** NAME        : Johnny Pfeifer                                  ***
+*** CLASS       : CSc 346                                         ***
+*** ASSIGNMENT  : 4                                               ***
+*** DUE DATE    : 4/3                                             ***
+*** INSTRUCTOR  : GAMRADT                                         ***
+*********************************************************************
+*** DESCRIPTION : This program simulates running an app store.    ***
+    You can select an app store, Google or Apple, and purchase apps.*
+********************************************************************/
 using System;
 namespace AppStoreNS;
 
@@ -15,15 +25,30 @@ public abstract class AppStore
         Apps = new List<App>();
     }
     //Paramaterized Constructor
-    //public AppStore(List<App> apps, int selected, int paid)
+    public AppStore(List<App> apps, int selected, int paid)
+    {
+        Apps = apps;
+        Selected = selected;
+        Paid = paid;
+    }
     
     // Copy Constructor
     private AppStore(AppStore other)
     {
-        this.Apps = other.Apps;
+        this.Apps = new List<App>(other.Apps);
         this.Selected = other.Selected;
         this.Paid = other.Paid;
     }
+    /********************************************************************
+    *** METHOD      : PurchaseApp                                     ***
+    *********************************************************************
+    *** DESCRIPTION : This method calls each method needed in the app ***
+    ***                 purchasing process                            ***
+    *** INPUT ARGS  :                                                 ***
+    *** OUTPUT ARGS :                                                 ***
+    *** IN/OUT ARGS :                                                 ***
+    *** RETURN      : void                                            ***
+    ********************************************************************/
     public void PurchaseApp()
     {
         WelcomeToStore();
@@ -32,8 +57,27 @@ public abstract class AppStore
         ReturnChange();
         DownloadApp();
     }
+    /********************************************************************
+    *** METHOD      : WelcomeToStore                                  ***
+    *********************************************************************
+    *** DESCRIPTION : This method displays a message to the user,     ***
+    ***                 thanking them for using the app store         ***
+    *** INPUT ARGS  :                                                 ***
+    *** OUTPUT ARGS :                                                 ***
+    *** IN/OUT ARGS :                                                 ***
+    *** RETURN      : void                                            ***
+    ********************************************************************/
     protected abstract void WelcomeToStore();      //protected?
-
+    /********************************************************************
+    *** METHOD      : SelectApp                                       ***
+    *********************************************************************
+    *** DESCRIPTION : This method displays a menu to selected an app  ***
+    ***                  from the desired app store.                  ***
+    *** INPUT ARGS  :                                                 ***
+    *** OUTPUT ARGS :                                                 ***
+    *** IN/OUT ARGS :                                                 ***
+    *** RETURN      : void                                            ***
+    ********************************************************************/
     protected void SelectApp()
     {
 
@@ -62,7 +106,16 @@ public abstract class AppStore
             else done = true;
         }
     }
-    protected virtual void PayForApp()
+    /********************************************************************
+    *** METHOD      : PayForApp                                       ***
+    *********************************************************************
+    *** DESCRIPTION : This method prompts the user for a payment      ***
+    *** INPUT ARGS  :                                                 ***
+    *** OUTPUT ARGS :                                                 ***
+    *** IN/OUT ARGS :                                                 ***
+    *** RETURN      : void                                            ***
+    ********************************************************************/
+    protected virtual void PayForApp()  //default: $20 and $10 bills accepted
     {
         Paid = 0;
 
@@ -72,7 +125,17 @@ public abstract class AppStore
         Paid += Convert.ToInt32(Console.ReadLine()) * 10;
         Console.WriteLine();
     }
-    protected virtual void ReturnChange()
+    /********************************************************************
+    *** METHOD      : ReturnChange                                    ***
+    *********************************************************************
+    *** DESCRIPTION : This method calculates and displays the change. ***
+    ***                 It decides if the app will be purchased       ***
+    *** INPUT ARGS  :                                                 ***
+    *** OUTPUT ARGS :                                                 ***
+    *** IN/OUT ARGS :                                                 ***
+    *** RETURN      : void                                            ***
+    ********************************************************************/
+    protected virtual void ReturnChange()   //default implementation
     {
         if (Paid >= Apps[Selected].Price)   //purchase successful
         {
@@ -90,7 +153,17 @@ public abstract class AppStore
             Paid = 0;
         }
     }
-    protected void DownloadApp()
+    /********************************************************************
+    *** METHOD      : DownloadApp                                     ***
+    *********************************************************************
+    *** DESCRIPTION : Tells a customer if their app is being downloaded**
+    ***                 Thanks customer for using the appstore        ***
+    *** INPUT ARGS  :                                                 ***
+    *** OUTPUT ARGS :                                                 ***
+    *** IN/OUT ARGS :                                                 ***
+    *** RETURN      : void                                            ***
+    ********************************************************************/
+    protected virtual void DownloadApp()        //default method - override for each appstore
     {
         if(Paid == 1)
         {
@@ -101,10 +174,10 @@ public abstract class AppStore
         {
             Console.WriteLine("Payment declined: insufficient funds");
         }
-        Console.WriteLine(Apps[Selected].Name);
         Console.Write("Press enter to continue. . . ");
         Console.ReadLine();
         Console.Clear();
     }
 
 }
+
