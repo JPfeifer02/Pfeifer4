@@ -23,7 +23,7 @@ public class Apple : AppStore
         Apps.Add(new App("MainStage", 46, 5));
         Apps.Add(new App("Pixelmator Pro", 57, 2));
     }
-    private Apple(Apple other) : base(4)
+    public Apple(Apple other) : base(4)
     {
         if(other != null)
         {

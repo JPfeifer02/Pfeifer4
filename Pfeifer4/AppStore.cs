@@ -24,14 +24,6 @@ public abstract class AppStore
     {
         Apps = new List<App>();
     }
-    //Paramaterized Constructor
-    public AppStore(List<App> apps, int selected, int paid)
-    {
-        Apps = apps;
-        Selected = selected;
-        Paid = paid;
-    }
-    
     // Copy Constructor
     private AppStore(AppStore other)
     {
@@ -163,7 +155,7 @@ public abstract class AppStore
     *** IN/OUT ARGS :                                                 ***
     *** RETURN      : void                                            ***
     ********************************************************************/
-    protected void DownloadApp()        //default method - override for each appstore
+    protected void DownloadApp()        
     {
         if(Paid == 1)
         {

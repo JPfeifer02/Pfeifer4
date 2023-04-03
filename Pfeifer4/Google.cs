@@ -22,7 +22,7 @@ public class Google : AppStore
         Apps.Add(new App("FL Studio Mobile", 50, 5));
         Apps.Add(new App("LumaFusion Pro", 57, 1));
     }
-    private Google(Google other) : base(3)
+    public Google(Google other) : base(3)  // Copy Constructor
     {
         if (other != null)
         {

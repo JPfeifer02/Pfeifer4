@@ -14,8 +14,8 @@ namespace AppStoreNS;
 public class App
 {
     // Properties
-    public string Name {get; set;} = "";
-    public int Price {get; set;} = 0;
+    public string Name {get; private set;} = "";
+    public int Price {get; private set;} = 0;
     public int Available {get; set;} = 0;
     // Methods
     public App(string name = "", int price = 0, int available = 0)  // default parameterized
